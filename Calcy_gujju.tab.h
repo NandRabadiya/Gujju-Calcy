@@ -67,14 +67,25 @@ extern int yydebug;
     MOTU = 268,                    /* MOTU  */
     NANU = 269,                    /* NANU  */
     UNDHU = 270,                   /* UNDHU  */
-    NUMBER = 271                   /* NUMBER  */
+    INT_VAL = 271,                 /* INT_VAL  */
+    FLOAT_VAL = 272                /* FLOAT_VAL  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+union YYSTYPE
+{
+#line 23 "Calcy_gujju.y"
+
+    int intval;
+    float floatval;
+
+#line 86 "Calcy_gujju.tab.h"
+
+};
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif

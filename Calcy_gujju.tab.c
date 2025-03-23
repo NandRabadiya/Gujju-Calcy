@@ -67,16 +67,21 @@
 
 
 /* First part of user prologue.  */
-#line 1 "Calcy_gujju.y"
+#line 9 "Calcy_gujju.y"
 
 #include <stdio.h>
 #include <stdlib.h>
-
 extern int yylex();
-extern int yylval;
+extern int yyparse();
+extern char* yytext;
+extern FILE* yyin;    /* For file input */
+
+/* Declare line_num as external */
+extern int line_num;
+
 void yyerror(const char *s);
 
-#line 80 "Calcy_gujju.tab.c"
+#line 85 "Calcy_gujju.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -120,12 +125,14 @@ enum yysymbol_kind_t
   YYSYMBOL_MOTU = 13,                      /* MOTU  */
   YYSYMBOL_NANU = 14,                      /* NANU  */
   YYSYMBOL_UNDHU = 15,                     /* UNDHU  */
-  YYSYMBOL_NUMBER = 16,                    /* NUMBER  */
-  YYSYMBOL_YYACCEPT = 17,                  /* $accept  */
-  YYSYMBOL_program = 18,                   /* program  */
-  YYSYMBOL_statements = 19,                /* statements  */
-  YYSYMBOL_statement = 20,                 /* statement  */
-  YYSYMBOL_expression = 21                 /* expression  */
+  YYSYMBOL_INT_VAL = 16,                   /* INT_VAL  */
+  YYSYMBOL_FLOAT_VAL = 17,                 /* FLOAT_VAL  */
+  YYSYMBOL_18_n_ = 18,                     /* '\n'  */
+  YYSYMBOL_YYACCEPT = 19,                  /* $accept  */
+  YYSYMBOL_program = 20,                   /* program  */
+  YYSYMBOL_statements = 21,                /* statements  */
+  YYSYMBOL_statement = 22,                 /* statement  */
+  YYSYMBOL_expression = 23                 /* expression  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -451,21 +458,21 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  12
+#define YYFINAL  15
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   62
+#define YYLAST   78
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  17
+#define YYNTOKENS  19
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  5
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  18
+#define YYNRULES  20
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  31
+#define YYNSTATES  34
 
 /* YYMAXUTOK -- Last valid token kind.  */
-#define YYMAXUTOK   271
+#define YYMAXUTOK   272
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -480,7 +487,7 @@ union yyalloc
 static const yytype_int8 yytranslate[] =
 {
        0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+      18,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -506,15 +513,16 @@ static const yytype_int8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
-      15,    16
+      15,    16,    17
 };
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    15,    15,    19,    20,    24,    25,    26,    31,    32,
-      33,    34,    35,    36,    37,    38,    39,    40,    41
+       0,    42,    42,    46,    47,    58,    59,    60,    61,    65,
+      66,    67,    68,    77,    78,    79,    80,    81,    82,    83,
+      84
 };
 #endif
 
@@ -532,8 +540,8 @@ static const char *const yytname[] =
 {
   "\"end of file\"", "error", "\"invalid token\"", "JO", "NAHI_TO",
   "JODO", "KAPO", "GUNO", "BHANGO", "BARABAR", "DEKHADO", "SACHU", "KHOTU",
-  "MOTU", "NANU", "UNDHU", "NUMBER", "$accept", "program", "statements",
-  "statement", "expression", YY_NULLPTR
+  "MOTU", "NANU", "UNDHU", "INT_VAL", "FLOAT_VAL", "'\\n'", "$accept",
+  "program", "statements", "statement", "expression", YY_NULLPTR
 };
 
 static const char *
@@ -543,12 +551,12 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-11)
+#define YYPACT_NINF (-18)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
 
-#define YYTABLE_NINF (-1)
+#define YYTABLE_NINF (-3)
 
 #define yytable_value_is_error(Yyn) \
   0
@@ -557,10 +565,10 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      15,   -10,   -11,   -11,   -10,   -11,     4,    15,   -11,    38,
-      28,    48,   -11,   -11,   -10,   -10,   -10,   -10,   -10,   -11,
-     -10,   -10,   -10,    48,    48,    48,    48,    48,    48,    48,
-      48
+      31,   -17,    61,   -18,   -18,    61,   -18,   -18,     2,    24,
+     -18,    44,   -18,     0,   -18,   -18,   -18,    61,    61,    61,
+      61,    61,   -18,    61,    61,    61,    57,    57,    17,    17,
+     -18,   -18,   -18,    54
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -568,22 +576,22 @@ static const yytype_int8 yypact[] =
    means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       0,     0,    14,    15,     0,    13,     0,     2,     4,     0,
-       7,    18,     1,     3,     0,     0,     0,     0,     0,     5,
-       0,     0,     0,     8,     9,    10,    11,    12,    16,    17,
-       6
+       0,     0,     0,    19,    20,     0,    17,    18,     0,     0,
+       4,     0,     8,     7,    16,     1,     3,     0,     0,     0,
+       0,     0,     5,     0,     0,     0,     9,    10,    11,    12,
+      13,    14,    15,     6
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -11,   -11,   -11,     0,    -1
+     -18,   -18,   -18,     1,    -2
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,     6,     7,     8,     9
+       0,     8,     9,    10,    11
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -591,48 +599,52 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      10,     2,     3,    11,    12,     4,     5,    13,     0,     0,
-       0,     0,     0,    23,    24,    25,    26,    27,     1,    28,
-      29,    30,     0,     0,     0,     0,     2,     3,     0,     0,
-       4,     5,    22,    14,    15,    16,    17,    18,     0,     0,
-       0,    20,    21,    14,    15,    16,    17,    18,    19,     0,
-       0,    20,    21,    14,    15,    16,    17,    18,     0,     0,
-       0,    20,    21
+      13,    12,    15,    14,    25,    17,    18,    19,    20,    21,
+      16,     0,     0,    23,    24,    26,    27,    28,    29,    30,
+       0,    31,    32,    33,    -2,     1,    21,     2,     0,     0,
+      23,    24,     1,     0,     2,     3,     4,     0,     0,     5,
+       6,     7,     3,     4,     0,     0,     5,     6,     7,    17,
+      18,    19,    20,    21,    22,     0,     0,    23,    24,    17,
+      18,    19,    20,    21,    19,    20,    21,    23,    24,     0,
+      23,    24,     3,     4,     0,     0,     5,     6,     7
 };
 
 static const yytype_int8 yycheck[] =
 {
-       1,    11,    12,     4,     0,    15,    16,     7,    -1,    -1,
-      -1,    -1,    -1,    14,    15,    16,    17,    18,     3,    20,
-      21,    22,    -1,    -1,    -1,    -1,    11,    12,    -1,    -1,
-      15,    16,     4,     5,     6,     7,     8,     9,    -1,    -1,
-      -1,    13,    14,     5,     6,     7,     8,     9,    10,    -1,
-      -1,    13,    14,     5,     6,     7,     8,     9,    -1,    -1,
-      -1,    13,    14
+       2,    18,     0,     5,     4,     5,     6,     7,     8,     9,
+       9,    -1,    -1,    13,    14,    17,    18,    19,    20,    21,
+      -1,    23,    24,    25,     0,     1,     9,     3,    -1,    -1,
+      13,    14,     1,    -1,     3,    11,    12,    -1,    -1,    15,
+      16,    17,    11,    12,    -1,    -1,    15,    16,    17,     5,
+       6,     7,     8,     9,    10,    -1,    -1,    13,    14,     5,
+       6,     7,     8,     9,     7,     8,     9,    13,    14,    -1,
+      13,    14,    11,    12,    -1,    -1,    15,    16,    17
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     3,    11,    12,    15,    16,    18,    19,    20,    21,
-      21,    21,     0,    20,     5,     6,     7,     8,     9,    10,
-      13,    14,     4,    21,    21,    21,    21,    21,    21,    21,
-      21
+       0,     1,     3,    11,    12,    15,    16,    17,    20,    21,
+      22,    23,    18,    23,    23,     0,    22,     5,     6,     7,
+       8,     9,    10,    13,    14,     4,    23,    23,    23,    23,
+      23,    23,    23,    23
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    17,    18,    19,    19,    20,    20,    20,    21,    21,
-      21,    21,    21,    21,    21,    21,    21,    21,    21
+       0,    19,    20,    21,    21,    22,    22,    22,    22,    23,
+      23,    23,    23,    23,    23,    23,    23,    23,    23,    23,
+      23
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     1,     2,     1,     2,     4,     2,     3,     3,
-       3,     3,     3,     1,     1,     1,     3,     3,     2
+       0,     2,     1,     2,     1,     2,     4,     2,     2,     3,
+       3,     3,     3,     3,     3,     3,     2,     1,     1,     1,
+       1
 };
 
 
@@ -1096,91 +1108,111 @@ yyreduce:
   switch (yyn)
     {
   case 5: /* statement: expression DEKHADO  */
-#line 24 "Calcy_gujju.y"
-                                { printf("Output: %d\n", yyvsp[-1]); }
-#line 1102 "Calcy_gujju.tab.c"
-    break;
-
-  case 6: /* statement: JO expression NAHI_TO expression  */
-#line 25 "Calcy_gujju.y"
-                                       { if (yyvsp[-2]) printf("Sachu\n"); else printf("Khotu\n"); }
-#line 1108 "Calcy_gujju.tab.c"
-    break;
-
-  case 7: /* statement: JO expression  */
-#line 26 "Calcy_gujju.y"
-                                 { if (yyvsp[0]) printf("Sachu\n"); else printf("Khotu\n"); }
+#line 58 "Calcy_gujju.y"
+                                { printf("Output: %d\n", (yyvsp[-1].intval)); }
 #line 1114 "Calcy_gujju.tab.c"
     break;
 
-  case 8: /* expression: expression JODO expression  */
-#line 31 "Calcy_gujju.y"
-                                  { yyval = yyvsp[-2] + yyvsp[0]; printf("Addition Performed: %d + %d = %d\n", yyvsp[-2], yyvsp[0], yyval); }
+  case 6: /* statement: JO expression NAHI_TO expression  */
+#line 59 "Calcy_gujju.y"
+                                       { if ((yyvsp[-2].intval)) printf("Sachu\n"); else printf("Khotu\n"); }
 #line 1120 "Calcy_gujju.tab.c"
     break;
 
-  case 9: /* expression: expression KAPO expression  */
-#line 32 "Calcy_gujju.y"
-                                  { yyval = yyvsp[-2] - yyvsp[0]; printf("Subtraction Performed: %d - %d = %d\n", yyvsp[-2], yyvsp[0], yyval); }
+  case 7: /* statement: JO expression  */
+#line 60 "Calcy_gujju.y"
+                                 { if ((yyvsp[0].intval)) printf("Sachu\n"); else printf("Khotu\n"); }
 #line 1126 "Calcy_gujju.tab.c"
     break;
 
-  case 10: /* expression: expression GUNO expression  */
-#line 33 "Calcy_gujju.y"
-                                  { yyval = yyvsp[-2] * yyvsp[0]; printf("Multiplication Performed: %d * %d = %d\n", yyvsp[-2], yyvsp[0], yyval); }
+  case 8: /* statement: error '\n'  */
+#line 61 "Calcy_gujju.y"
+                                { yyerrok; }
 #line 1132 "Calcy_gujju.tab.c"
     break;
 
-  case 11: /* expression: expression BHANGO expression  */
-#line 34 "Calcy_gujju.y"
-                                    { yyval = yyvsp[-2] / yyvsp[0]; printf("Division Performed: %d / %d = %d\n", yyvsp[-2], yyvsp[0], yyval); }
+  case 9: /* expression: expression JODO expression  */
+#line 65 "Calcy_gujju.y"
+                                  { (yyval.intval) = (yyvsp[-2].intval) + (yyvsp[0].intval); printf("Addition Performed: %d + %d = %d\n", (yyvsp[-2].intval), (yyvsp[0].intval), (yyval.intval)); }
 #line 1138 "Calcy_gujju.tab.c"
     break;
 
-  case 12: /* expression: expression BARABAR expression  */
-#line 35 "Calcy_gujju.y"
-                                    { yyval = (yyvsp[-2] == yyvsp[0]); printf("Comparison: %d == %d -> %s\n", yyvsp[-2], yyvsp[0], yyval ? "True" : "False"); }
+  case 10: /* expression: expression KAPO expression  */
+#line 66 "Calcy_gujju.y"
+                                  { (yyval.intval) = (yyvsp[-2].intval) - (yyvsp[0].intval); printf("Subtraction Performed: %d - %d = %d\n", (yyvsp[-2].intval), (yyvsp[0].intval), (yyval.intval)); }
 #line 1144 "Calcy_gujju.tab.c"
     break;
 
-  case 13: /* expression: NUMBER  */
-#line 36 "Calcy_gujju.y"
-                                   { yyval = yyvsp[0]; }
+  case 11: /* expression: expression GUNO expression  */
+#line 67 "Calcy_gujju.y"
+                                  { (yyval.intval) = (yyvsp[-2].intval) * (yyvsp[0].intval); printf("Multiplication Performed: %d * %d = %d\n", (yyvsp[-2].intval), (yyvsp[0].intval), (yyval.intval)); }
 #line 1150 "Calcy_gujju.tab.c"
     break;
 
-  case 14: /* expression: SACHU  */
-#line 37 "Calcy_gujju.y"
-                                    { yyval = 1; }
-#line 1156 "Calcy_gujju.tab.c"
+  case 12: /* expression: expression BHANGO expression  */
+#line 68 "Calcy_gujju.y"
+                                    { 
+        if ((yyvsp[0].intval) == 0) {
+            yyerror("Division by zero");
+            (yyval.intval) = 0;
+        } else {
+            (yyval.intval) = (yyvsp[-2].intval) / (yyvsp[0].intval); 
+            printf("Division Performed: %d / %d = %d\n", (yyvsp[-2].intval), (yyvsp[0].intval), (yyval.intval));
+        }
+      }
+#line 1164 "Calcy_gujju.tab.c"
     break;
 
-  case 15: /* expression: KHOTU  */
-#line 38 "Calcy_gujju.y"
-                                    { yyval = 0; }
-#line 1162 "Calcy_gujju.tab.c"
+  case 13: /* expression: expression BARABAR expression  */
+#line 77 "Calcy_gujju.y"
+                                    { (yyval.intval) = ((yyvsp[-2].intval) == (yyvsp[0].intval)); printf("Comparison: %d == %d -> %s\n", (yyvsp[-2].intval), (yyvsp[0].intval), (yyval.intval) ? "True" : "False"); }
+#line 1170 "Calcy_gujju.tab.c"
     break;
 
-  case 16: /* expression: expression MOTU expression  */
-#line 39 "Calcy_gujju.y"
-                                   { yyval = yyvsp[-2] > yyvsp[0]; printf("Comparison: %d > %d -> %s\n", yyvsp[-2], yyvsp[0], yyval ? "True" : "False"); }
-#line 1168 "Calcy_gujju.tab.c"
+  case 14: /* expression: expression MOTU expression  */
+#line 78 "Calcy_gujju.y"
+                                   { (yyval.intval) = (yyvsp[-2].intval) > (yyvsp[0].intval); printf("Comparison: %d > %d -> %s\n", (yyvsp[-2].intval), (yyvsp[0].intval), (yyval.intval) ? "True" : "False"); }
+#line 1176 "Calcy_gujju.tab.c"
     break;
 
-  case 17: /* expression: expression NANU expression  */
-#line 40 "Calcy_gujju.y"
-                                   { yyval = yyvsp[-2] < yyvsp[0]; printf("Comparison: %d < %d -> %s\n", yyvsp[-2], yyvsp[0], yyval ? "True" : "False"); }
-#line 1174 "Calcy_gujju.tab.c"
+  case 15: /* expression: expression NANU expression  */
+#line 79 "Calcy_gujju.y"
+                                   { (yyval.intval) = (yyvsp[-2].intval) < (yyvsp[0].intval); printf("Comparison: %d < %d -> %s\n", (yyvsp[-2].intval), (yyvsp[0].intval), (yyval.intval) ? "True" : "False"); }
+#line 1182 "Calcy_gujju.tab.c"
     break;
 
-  case 18: /* expression: UNDHU expression  */
-#line 41 "Calcy_gujju.y"
-                                   { yyval = !yyvsp[0]; printf("Negation: !%d -> %d\n", yyvsp[0], yyval); }
-#line 1180 "Calcy_gujju.tab.c"
+  case 16: /* expression: UNDHU expression  */
+#line 80 "Calcy_gujju.y"
+                                   { (yyval.intval) = !(yyvsp[0].intval); printf("Negation: !%d -> %d\n", (yyvsp[0].intval), (yyval.intval)); }
+#line 1188 "Calcy_gujju.tab.c"
+    break;
+
+  case 17: /* expression: INT_VAL  */
+#line 81 "Calcy_gujju.y"
+                                  { (yyval.intval) = (yyvsp[0].intval); }
+#line 1194 "Calcy_gujju.tab.c"
+    break;
+
+  case 18: /* expression: FLOAT_VAL  */
+#line 82 "Calcy_gujju.y"
+                                  { (yyval.intval) = (int)(yyvsp[0].floatval); printf("Converting float %f to int %d\n", (yyvsp[0].floatval), (yyval.intval)); }
+#line 1200 "Calcy_gujju.tab.c"
+    break;
+
+  case 19: /* expression: SACHU  */
+#line 83 "Calcy_gujju.y"
+                                  { (yyval.intval) = 1; }
+#line 1206 "Calcy_gujju.tab.c"
+    break;
+
+  case 20: /* expression: KHOTU  */
+#line 84 "Calcy_gujju.y"
+                                  { (yyval.intval) = 0; }
+#line 1212 "Calcy_gujju.tab.c"
     break;
 
 
-#line 1184 "Calcy_gujju.tab.c"
+#line 1216 "Calcy_gujju.tab.c"
 
       default: break;
     }
@@ -1373,9 +1405,10 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 44 "Calcy_gujju.y"
+#line 86 "Calcy_gujju.y"
 
 
+/*
 void yyerror(const char *s) {
     printf("Error: %s\n", s);
 }
@@ -1384,4 +1417,38 @@ int main() {
     printf("Welcome to Calcy Gujju - Enter your expressions below:\n");
     yyparse();
     return 0;
+} */
+
+
+void yyerror(const char *s) {
+    fprintf(stderr, "Error at line %d: %s", line_num, s);
+    
+    /* Show the current token if available */
+    if (yytext[0] != '\0')
+        fprintf(stderr, " near token '%s'", yytext);
+    
+    fprintf(stderr, "\n");
+}
+
+int main(int argc, char **argv) {
+    printf("Welcome to Calcy Gujju - Enter your expressions below:\n");
+    
+    /* Handle file input if provided */
+    if (argc > 1) {
+        FILE *input_file = fopen(argv[1], "r");
+        if (!input_file) {
+            fprintf(stderr, "Cannot open input file %s\n", argv[1]);
+            return 1;
+        }
+        yyin = input_file;
+    }
+    
+    int result = yyparse();
+    
+    /* Close file if we opened one */
+    if (argc > 1) {
+        fclose(yyin);
+    }
+    
+    return result;
 }

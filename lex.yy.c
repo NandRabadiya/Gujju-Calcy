@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 1
-#define YY_END_OF_BUFFER 2
+#define YY_NUM_RULES 20
+#define YY_END_OF_BUFFER 21
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -360,26 +360,32 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[6] =
+static const flex_int16_t yy_accept[71] =
     {   0,
-        0,    0,    2,    1,    0
+        0,    0,   21,   19,   18,   17,   15,   14,   19,   19,
+       19,   19,   19,   19,   19,   19,   19,    0,   15,    0,
+        0,    0,    0,    1,    0,    0,    0,    0,    0,    0,
+       16,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+        0,    0,    0,    0,    0,    0,    5,    3,    4,    0,
+       11,    0,   12,    0,    0,    0,    0,    0,   10,    0,
+        9,   13,    0,    6,    0,    0,    7,    8,    2,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
     {   0,
+        1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    2,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    4,    1,    5,    5,    5,
+        5,    5,    5,    5,    5,    5,    5,    1,    6,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    7,    1,    8,    9,   10,   11,
 
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+       12,    1,   13,   14,   15,   16,   17,    1,   18,   19,
+       20,   21,    1,   22,   23,   24,   25,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -397,29 +403,65 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[2] =
+static const YY_CHAR yy_meta[26] =
     {   0,
-        1
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[7] =
+static const flex_int16_t yy_base[71] =
     {   0,
-        0,    0,    2,    3,    3,    0
+        0,    0,   81,   82,   82,   82,   22,   82,   20,   68,
+       54,   58,   21,   57,   68,   67,   55,   68,   26,   50,
+       63,   53,   50,   57,   46,   46,   41,   18,   54,   52,
+       57,   53,   41,   45,   38,   37,   36,   31,   29,   38,
+       27,   37,   36,   40,   35,   39,   82,   82,   82,   21,
+       82,   38,   82,   19,   18,   34,   21,   29,   82,   15,
+       82,   82,   16,   82,   16,   13,   82,   82,   82,   82
     } ;
 
-static const flex_int16_t yy_def[7] =
+static const flex_int16_t yy_def[71] =
     {   0,
-        6,    6,    5,    5,    0,    5
+       70,    1,   70,   70,   70,   70,   70,   70,   70,   70,
+       70,   70,   70,   70,   70,   70,   70,   70,   70,   70,
+       70,   70,   70,   70,   70,   70,   70,   70,   70,   70,
+       70,   70,   70,   70,   70,   70,   70,   70,   70,   70,
+       70,   70,   70,   70,   70,   70,   70,   70,   70,   70,
+       70,   70,   70,   70,   70,   70,   70,   70,   70,   70,
+       70,   70,   70,   70,   70,   70,   70,   70,   70,    0
     } ;
 
-static const flex_int16_t yy_nxt[5] =
+static const flex_int16_t yy_nxt[108] =
     {   0,
-        4,    5,    3,    5
+        4,    5,    6,    4,    7,    8,    4,    4,    9,    4,
+       10,    4,   11,    4,    4,   12,   13,   14,   15,    4,
+        4,    4,   16,    4,   17,   18,   19,   20,   25,   18,
+       19,   40,   69,   21,   26,   68,   41,   67,   66,   65,
+       64,   63,   62,   61,   60,   59,   58,   57,   56,   55,
+       54,   53,   52,   51,   50,   49,   48,   47,   46,   45,
+       44,   31,   43,   42,   39,   38,   37,   36,   35,   34,
+       33,   32,   31,   30,   29,   28,   27,   24,   23,   22,
+       70,    3,   70,   70,   70,   70,   70,   70,   70,   70,
+       70,   70,   70,   70,   70,   70,   70,   70,   70,   70,
+
+       70,   70,   70,   70,   70,   70,   70
     } ;
 
-static const flex_int16_t yy_chk[5] =
+static const flex_int16_t yy_chk[108] =
     {   0,
-        6,    3,    5,    5
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    7,    7,    9,   13,   19,
+       19,   28,   66,    9,   13,   65,   28,   63,   60,   58,
+       57,   56,   55,   54,   52,   50,   46,   45,   44,   43,
+       42,   41,   40,   39,   38,   37,   36,   35,   34,   33,
+       32,   31,   30,   29,   27,   26,   25,   24,   23,   22,
+       21,   20,   18,   17,   16,   15,   14,   12,   11,   10,
+        3,   70,   70,   70,   70,   70,   70,   70,   70,   70,
+       70,   70,   70,   70,   70,   70,   70,   70,   70,   70,
+
+       70,   70,   70,   70,   70,   70,   70
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -438,13 +480,13 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "Calcy_gujju.l"
 #line 2 "Calcy_gujju.l"
-    #include <stdio.h>
-    #include "y.tab.h"
-    #include <stdlib.h>
-    
-    
-#line 446 "lex.yy.c"
-#line 447 "lex.yy.c"
+#include <stdio.h>
+#include "Calcy_gujju.tab.h"
+#include <stdlib.h>
+/* Add line number tracking */
+int line_num = 1;  /* Define line_num here */
+#line 488 "lex.yy.c"
+#line 489 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -661,29 +703,9 @@ YY_DECL
 		}
 
 	{
-#line 9 "Calcy_gujju.l"
+#line 8 "Calcy_gujju.l"
 
-#line 11 "Calcy_gujju.l"
-    "jo"             { printf("Token Matched: JO\n"); return JO; }
-    "nahi_to"        { printf("Token Matched: NAHI_TO\n"); return NAHI_TO; }
-    "jodo"           { printf("Token Matched: JODO\n"); return JODO; }
-    "kapo"           { printf("Token Matched: KAPO\n"); return KAPO; }
-    "guno"           { printf("Token Matched: GUNO\n"); return GUNO; }
-    "bhango"         { printf("Token Matched: BHANGO\n"); return BHANGO; }
-    "barabar"        { printf("Token Matched: BARABAR\n"); return BARABAR; }
-    "dekhado"        { printf("Token Matched: DEKHADO\n"); return DEKHADO; }
-    "sachu"          { printf("Token Matched: SACHU\n"); return SACHU; }
-    "khotu"          { printf("Token Matched: KHOTU\n"); return KHOTU; }
-    "motu"           { printf("Token Matched: MOTU\n"); return MOTU; }
-    "nanu"           { printf("Token Matched: NANU\n"); return NANU; }
-    "undhu"          { printf("Token Matched: UNDHU\n"); return UNDHU; }
-
-    [0-9]+      { printf("Token: INT_VAL (%s)\n", yytext); yylval.intval = atoi(yytext); return INT_VAL; }
-    [0-9]+"."[0-9]+  { printf("Token: FLOAT_VAL (%s)\n", yytext); yylval.floatval = atof(yytext); return FLOAT_VAL; }
-
-    [ \t\n]          { /* skip whitespace */ }
-    .                { printf("Ela Bhai aa nay chale : %s\n", yytext); }
-#line 686 "lex.yy.c"
+#line 708 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -710,13 +732,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 6 )
+				if ( yy_current_state >= 71 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 3 );
+		while ( yy_base[yy_current_state] != 82 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -742,10 +764,106 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 30 "Calcy_gujju.l"
+#line 9 "Calcy_gujju.l"
+{ printf("Token Matched: JO\n"); fflush(stdout); return JO; }
+	YY_BREAK
+case 2:
+YY_RULE_SETUP
+#line 10 "Calcy_gujju.l"
+{ printf("Token Matched: NAHI_TO\n"); fflush(stdout); return NAHI_TO; }
+	YY_BREAK
+case 3:
+YY_RULE_SETUP
+#line 11 "Calcy_gujju.l"
+{ printf("Token Matched: JODO\n"); fflush(stdout); return JODO; }
+	YY_BREAK
+case 4:
+YY_RULE_SETUP
+#line 12 "Calcy_gujju.l"
+{ printf("Token Matched: KAPO\n"); fflush(stdout); return KAPO; }
+	YY_BREAK
+case 5:
+YY_RULE_SETUP
+#line 13 "Calcy_gujju.l"
+{ printf("Token Matched: GUNO\n"); fflush(stdout); return GUNO; }
+	YY_BREAK
+case 6:
+YY_RULE_SETUP
+#line 14 "Calcy_gujju.l"
+{ printf("Token Matched: BHANGO\n"); fflush(stdout); return BHANGO; }
+	YY_BREAK
+case 7:
+YY_RULE_SETUP
+#line 15 "Calcy_gujju.l"
+{ printf("Token Matched: BARABAR\n"); fflush(stdout); return BARABAR; }
+	YY_BREAK
+case 8:
+YY_RULE_SETUP
+#line 16 "Calcy_gujju.l"
+{ printf("Token Matched: DEKHADO\n"); fflush(stdout); return DEKHADO; }
+	YY_BREAK
+case 9:
+YY_RULE_SETUP
+#line 17 "Calcy_gujju.l"
+{ printf("Token Matched: SACHU\n"); fflush(stdout); return SACHU; }
+	YY_BREAK
+case 10:
+YY_RULE_SETUP
+#line 18 "Calcy_gujju.l"
+{ printf("Token Matched: KHOTU\n"); fflush(stdout); return KHOTU; }
+	YY_BREAK
+case 11:
+YY_RULE_SETUP
+#line 19 "Calcy_gujju.l"
+{ printf("Token Matched: MOTU\n"); fflush(stdout); return MOTU; }
+	YY_BREAK
+case 12:
+YY_RULE_SETUP
+#line 20 "Calcy_gujju.l"
+{ printf("Token Matched: NANU\n"); fflush(stdout); return NANU; }
+	YY_BREAK
+case 13:
+YY_RULE_SETUP
+#line 21 "Calcy_gujju.l"
+{ printf("Token Matched: UNDHU\n"); fflush(stdout); return UNDHU; }
+	YY_BREAK
+case 14:
+YY_RULE_SETUP
+#line 22 "Calcy_gujju.l"
+{ printf("Token Matched: SEMICOLON\n"); fflush(stdout); return ';'; } /* Semicolon handler */
+	YY_BREAK
+case 15:
+YY_RULE_SETUP
+#line 23 "Calcy_gujju.l"
+{ printf("Token: INT_VAL (%s)\n", yytext); fflush(stdout); yylval.intval = atoi(yytext); return INT_VAL; }
+	YY_BREAK
+case 16:
+YY_RULE_SETUP
+#line 24 "Calcy_gujju.l"
+{ printf("Token: FLOAT_VAL (%s)\n", yytext); fflush(stdout); yylval.floatval = atof(yytext); return FLOAT_VAL; }
+	YY_BREAK
+case 17:
+/* rule 17 can match eol */
+YY_RULE_SETUP
+#line 25 "Calcy_gujju.l"
+{ line_num++; /* Increment line number counter */ }
+	YY_BREAK
+case 18:
+YY_RULE_SETUP
+#line 26 "Calcy_gujju.l"
+{ /* skip other whitespace */ }
+	YY_BREAK
+case 19:
+YY_RULE_SETUP
+#line 27 "Calcy_gujju.l"
+{ printf("Ela Bhai aa nay chale : %s (Line %d)\n", yytext, line_num); fflush(stdout); }
+	YY_BREAK
+case 20:
+YY_RULE_SETUP
+#line 28 "Calcy_gujju.l"
 ECHO;
 	YY_BREAK
-#line 748 "lex.yy.c"
+#line 866 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1042,7 +1160,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 6 )
+			if ( yy_current_state >= 71 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1070,11 +1188,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 6 )
+		if ( yy_current_state >= 71 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 5);
+	yy_is_jam = (yy_current_state == 70);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1750,10 +1868,8 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 30 "Calcy_gujju.l"
+#line 28 "Calcy_gujju.l"
 
-    
 int yywrap(void) {
-        return 1;
-    }
-    
+    return 1;
+}
